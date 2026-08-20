@@ -103,14 +103,6 @@ rather than parsing rendered HTML.
   pulled once would be.
 
 **Other questions this dataset can answer:**
-
-- **✅ Dwell time by port** — unlike arrival delay, dwell time (actual
-  departure minus actual arrival) doesn't need an original estimate,
-  so it's computable for 38 rows instead of 6. Virginia vessels dwell
-  a median of ~19.5 hours; Georgia's only 2 available data points
-  average ~39 hours — worth noting the Georgia sample is too small to
-  generalize from.
-  ![Dwell time by port](output/dwell_time_by_port.png)
 - **✅ Trade lane / service overlap** — of roughly 40 distinct trade
   lane codes at each port, only 6 are served by both, with Virginia
   generally seeing more volume on the shared lanes than Georgia.
