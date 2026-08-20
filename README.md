@@ -95,8 +95,34 @@ rather than parsing rendered HTML.
   (`delay ~ carrier + terminal + season`) — a natural next step once
   more Georgia snapshots are collected over time, since the current
   6-row sample is too small to model reliably.
-- Automate repeated daily snapshots (e.g. via a scheduled script) to
-  build a real time series and make delay comparable across both ports.
-- Add a third port (JAXPORT data already pulled, not yet integrated)
-  for a cargo-type comparison, since its export includes vessel type
-  (container/vehicle/bulk) that neither Georgia nor Virginia captures.
+- Automate repeated daily snapshots. A single pull rarely has both an
+  estimate and an actual time for the same vessel — daily snapshots
+  would catch each vessel twice (once before it arrives, once after)
+  so delay could be calculated by comparing pulls over time. This is
+  the real fix for small sample sizes, more than adding another port
+  pulled once would be.
+
+**Other questions this dataset can answer:**
+
+- **✅ Dwell time by port** — unlike arrival delay, dwell time (actual
+  departure minus actual arrival) doesn't need an original estimate,
+  so it's computable for 38 rows instead of 6. Virginia vessels dwell
+  a median of ~19.5 hours; Georgia's only 2 available data points
+  average ~39 hours — worth noting the Georgia sample is too small to
+  generalize from.
+  ![Dwell time by port](output/dwell_time_by_port.png)
+- **✅ Trade lane / service overlap** — of roughly 40 distinct trade
+  lane codes at each port, only 6 are served by both, with Virginia
+  generally seeing more volume on the shared lanes than Georgia.
+  ![Shared trade lane services](output/shared_services_by_port.png)
+- **✅ Do any vessels show up at both ports?** Checked by matching
+  vessel names directly — zero vessels appeared in both datasets. A
+  real, if simple, finding: no direct evidence of coastal hopping
+  between these two ports in this snapshot.
+- **⚠️ Does a locked schedule mean a more reliable one?** Not currently
+  answerable — Georgia's `is_locked` flag exists in the raw source data
+  but wasn't carried into the standardized schema. Would need a small
+  fix to `standardize.py` to include it before this can be tested.
+- **Berth utilization** — both ports show vessel traffic spread across
+  6 distinct berths each; not visualized here since the split was
+  fairly even and didn't reveal a clear pattern worth a chart.
