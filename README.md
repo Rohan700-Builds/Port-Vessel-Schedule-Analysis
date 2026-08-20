@@ -119,10 +119,3 @@ rather than parsing rendered HTML.
   vessel names directly — zero vessels appeared in both datasets. A
   real, if simple, finding: no direct evidence of coastal hopping
   between these two ports in this snapshot.
-- **⚠️ Does a locked schedule mean a more reliable one?** Not currently
-  answerable — Georgia's `is_locked` flag exists in the raw source data
-  but wasn't carried into the standardized schema. Would need a small
-  fix to `standardize.py` to include it before this can be tested.
-- **Berth utilization** — both ports show vessel traffic spread across
-  6 distinct berths each; not visualized here since the split was
-  fairly even and didn't reveal a clear pattern worth a chart.
