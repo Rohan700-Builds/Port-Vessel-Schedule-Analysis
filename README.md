@@ -85,9 +85,7 @@ Virginia.
 ## Tech
 
 Python, pandas, matplotlib. No external scraping libraries were needed
-in the end — both ports' schedule tools have a built-in CSV export,
-found by inspecting each site's network requests in Chrome DevTools
-rather than parsing rendered HTML.
+in the end — both ports' schedule tools have a built-in CSV export.
 
 ## Next steps
 
